@@ -1,0 +1,17 @@
+[
+  {
+    "locationA": "location1",
+    "locationB": "location2",
+    "miles": 40
+  },
+  {
+    "locationA": "location1",
+    "locationB": "location3",
+    "miles": 80
+  },
+  {
+    "locationA": "location2",
+    "locationB": "location3",
+    "miles": 120
+  }
+]
