@@ -1,6 +1,7 @@
-package com.company.repository;
+package com.company.repository.impl;
 
 import com.company.model.Order;
+import com.company.repository.OrderRepository;
 import com.company.util.SequenceGenerator;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;

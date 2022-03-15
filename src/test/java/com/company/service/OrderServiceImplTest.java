@@ -2,8 +2,9 @@ package com.company.service;
 
 import com.company.dto.OrderDto;
 import com.company.model.Order;
-import com.company.model.Status;
-import com.company.repository.OrderRepositoryImpl;
+import com.company.model.OrderStatus;
+import com.company.repository.impl.OrderRepositoryImpl;
+import com.company.service.impl.OrderServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -41,7 +42,7 @@ public class OrderServiceImplTest {
                 newProductItem(3L, 1L, 1L)
         ));
         var customer = newCustomer(1L);
-        var orderBuilder = Order.builder().customer(customer).items(items).status(Status.RESERVED);
+        var orderBuilder = Order.builder().customer(customer).items(items).status(OrderStatus.RESERVED);
         when(productItemService.findInClosestWarehouse(any(), any())).thenReturn(items);
         when(customerService.getById(anyLong())).thenReturn(customer);
         when(productItemService.deleteAll(anyList())).thenReturn(true);
@@ -51,7 +52,7 @@ public class OrderServiceImplTest {
         assertEquals(result.getId(), 1L);
         assertIterableEquals(result.getItems(), items);
         assertEquals(result.getCustomer(), customer);
-        assertEquals(result.getStatus(), Status.RESERVED);
+        assertEquals(result.getStatus(), OrderStatus.RESERVED);
 
         verify(productItemService).findInClosestWarehouse(customer, "product1");
         verify(customerService).getById(1L);
@@ -62,7 +63,7 @@ public class OrderServiceImplTest {
         var actual = captor.getValue();
         assertEquals(actual.getCustomer(), customer);
         assertEquals(actual.getItems(), items);
-        assertEquals(actual.getStatus(), Status.RESERVED);
+        assertEquals(actual.getStatus(), OrderStatus.RESERVED);
     }
 
 }

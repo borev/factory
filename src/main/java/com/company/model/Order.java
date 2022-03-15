@@ -14,6 +14,6 @@ public class Order implements Serializable {
     private Customer customer;
     @EqualsAndHashCode.Exclude
     private List<ProductItem> items;
-    private Status status;
+    private OrderStatus status;
 
 }

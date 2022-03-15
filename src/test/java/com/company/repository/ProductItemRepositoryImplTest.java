@@ -1,5 +1,6 @@
 package com.company.repository;
 
+import com.company.repository.impl.ProductItemRepositoryImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.company.model;
 
-public enum Status {
+public enum OrderStatus {
     RESERVED,
     SHIPPED,
     CANCELED,

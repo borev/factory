@@ -1,8 +1,10 @@
-package com.company.service;
+package com.company.service.impl;
 
 import com.company.dto.CustomerDto;
 import com.company.model.Customer;
 import com.company.repository.CustomerRepository;
+import com.company.service.CustomerService;
+import com.company.service.DistanceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.company.service;
+package com.company.service.impl;
 
 import com.company.dto.DistanceDto;
 import com.company.error.NotFoundException;
@@ -8,11 +8,14 @@ import com.company.model.ProductItem;
 import com.company.model.Warehouse;
 import com.company.repository.DistanceRepository;
 import com.company.repository.ProductItemRepository;
+import com.company.service.DistanceService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.io.Resource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,7 @@ import static java.util.stream.Collectors.groupingBy;
 
 @Service
 @RequiredArgsConstructor
+@CacheConfig(cacheNames = "distance")
 public class DistanceServiceImpl implements DistanceService {
 
     @Value("classpath:distance.json")
@@ -60,8 +64,14 @@ public class DistanceServiceImpl implements DistanceService {
     }
 
     @Override
+    @Cacheable
     public Long findDistance(Customer customer, Warehouse warehouse) {
-        return distanceRepository.findDistance(warehouse, customer);
+        try {
+            return distanceRepository.findDistance(warehouse, customer);
+        } catch (NotFoundException e) {
+            //can be calculated directly
+            return getProvidedDistance(warehouse, customer);
+        }
     }
 
     private Set<Warehouse> getAllWarehouses() {

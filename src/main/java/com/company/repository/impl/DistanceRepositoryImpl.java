@@ -1,9 +1,10 @@
-package com.company.repository;
+package com.company.repository.impl;
 
 import com.company.error.NotFoundException;
 import com.company.model.Customer;
 import com.company.model.Distance;
 import com.company.model.Warehouse;
+import com.company.repository.DistanceRepository;
 import com.company.util.SequenceGenerator;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

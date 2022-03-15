@@ -1,7 +1,8 @@
-package com.company.repository;
+package com.company.repository.impl;
 
 import com.company.error.NotFoundException;
 import com.company.model.Customer;
+import com.company.repository.CustomerRepository;
 import com.company.util.SequenceGenerator;
 import org.springframework.stereotype.Component;
 

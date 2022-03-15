@@ -1,13 +1,16 @@
-package com.company.service;
+package com.company.service.impl;
 
 import com.company.dto.OrderDto;
 import com.company.error.BusinessException;
 import com.company.model.Order;
-import com.company.repository.OrderRepositoryImpl;
+import com.company.repository.impl.OrderRepositoryImpl;
+import com.company.service.CustomerService;
+import com.company.service.OrderService;
+import com.company.service.ProductItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import static com.company.model.Status.RESERVED;
+import static com.company.model.OrderStatus.RESERVED;
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
 

@@ -1,6 +1,7 @@
-package com.company.repository;
+package com.company.repository.impl;
 
 import com.company.model.ProductItem;
+import com.company.repository.ProductItemRepository;
 import com.company.util.SequenceGenerator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

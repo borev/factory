@@ -1,8 +1,10 @@
-package com.company.service;
+package com.company.service.impl;
 
 import com.company.model.Customer;
 import com.company.model.ProductItem;
 import com.company.repository.ProductItemRepository;
+import com.company.service.DistanceService;
+import com.company.service.ProductItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
