@@ -10,17 +10,17 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-import static java.util.Collections.synchronizedList;
+import static java.util.Collections.synchronizedSet;
 
 @Slf4j
 @NoArgsConstructor
 @Component
 public class DistanceRepositoryImpl implements DistanceRepository {
 
-    private final List<Distance> distances = synchronizedList(new ArrayList<>());
+    private final Set<Distance> distances = synchronizedSet(new HashSet<>());
     private final SequenceGenerator gen = new SequenceGenerator();
 
     @Override

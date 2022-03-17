@@ -52,15 +52,9 @@ public class DistanceServiceImpl implements DistanceService {
     @Async
     @Override
     public void asyncSetupDistance(Customer customer) {
-        getAllWarehouses().parallelStream().forEach(warehouse -> {
-         var miles = getProvidedDistance(warehouse, customer);
-         var distance = Distance.builder()
-                 .miles(miles)
-                 .customer(customer)
-                 .warehouse(warehouse)
-                 .build();
-            distanceRepository.save(distance);
-        });
+        getAllWarehouses()
+                .parallelStream()
+                .forEach(warehouse -> calculateDistance(customer, warehouse));
     }
 
     @Override
@@ -70,8 +64,19 @@ public class DistanceServiceImpl implements DistanceService {
             return distanceRepository.findDistance(warehouse, customer);
         } catch (NotFoundException e) {
             //can be calculated directly
-            return getProvidedDistance(warehouse, customer);
+            return calculateDistance(customer, warehouse);
         }
+    }
+
+    private Long calculateDistance(Customer customer, Warehouse warehouse) {
+        var miles = getProvidedDistance(warehouse, customer);
+        var distance = Distance.builder()
+                .miles(miles)
+                .customer(customer)
+                .warehouse(warehouse)
+                .build();
+        distanceRepository.save(distance);
+        return miles;
     }
 
     private Set<Warehouse> getAllWarehouses() {
